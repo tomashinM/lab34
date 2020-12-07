@@ -1,0 +1,25 @@
+{% extends "layouts/base_layout.html" %}
+
+{% block main %}
+
+    {% if todo %}
+    <div class="container-fluid d-flex p-2 justify-content-center">
+    <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
+    <div class="card-header">{{ todo.title }}
+    {% if todo.done==1 %}
+        <span class="badge badge-success ml-2">Задача выполнена</span>
+    {% else %}
+        <span class="badge badge-danger ml-2">Задача не выполнена</span>
+    {% endif %}
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{ todo.txt }}</p>
+    </div>
+    </div>
+    </div>
+
+{% else %}
+  <h1 class="text-center text-warning mt-4 pt-4">У вас нет такой ToDo :(</h4>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "layouts/base_layout.html" %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm">
+          <ul class="list-group" id="todos">
+    
+    {% if todos %}
+    {% for todo in todos %}
+        <li class="list-group-item" data-todo-id="{{ todo.id }}">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between">
+      <div class="form-check ml-2">
+        <input onclick="updateTodo({{ todo.id }})" class="form-check-input position-static" type="checkbox" {% if todo.done==1 %}checked{% endif %}>
+      </div>
+      <a href="/todo/{{ todo.id }}"> {{ todo.title }}</a>
+    </div>
+      <button onclick="deleteTodo({{ todo.id }})" type="button" class="close" aria-label="del">❌</button>
+  </div>
+  </li>
+  {% endfor %}
+      
+    {% else %}
+<li class="list-group-item">
+      <div class="d-flex justify-content-center">
+      <p>У вас пока нет задач.</p>
+      </div>
+      </li>
+    
+  {% endif %}
+  </ul>
+      </div>
+
+
+      <div class="col-sm">
+        <div class="d-flex flex-column p-3 border border-secondary rounded bg-light">
+
+
+        <form method="post" action="/">
+          <div class="form-group">
+            <h3 class="text-dark">Новая задача</h3>
+        </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="title" name="title" placeholder="Заголовок" required autofocus>
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" placeholder="Описание" id="txt" name="txt" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

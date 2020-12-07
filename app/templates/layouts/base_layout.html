@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <title>{{ page_title }}</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">ToDoService</a>
+        <div class="d-flex">
+        {% if user %}
+            <span class="navbar-text"><i class="fas fa-user-circle"></i> {{ user.email }}</span>
+            <a href="/logout" class="btn btn-dark" role="button"><i class="fas fa-sign-out-alt"></i> Выход</a>
+        {% else %}
+            <a class="btn btn-dark" role="button" href="/login"><i class="fas fa-sign-in-alt"></i> Вход</a>
+            <a href="/registration" class="btn btn-dark" role="button"><i class="fas fa-user-plus"></i> Регистрация</a>
+        {% endif %}
+        </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+    {% block main %}{% endblock %}
+    </main>
+
+    <script defer src="/static/fontawesome/js/solid.min.js"></script>
+    <script defer src="/static/fontawesome/js/fontawesome.min.js"></script>
+    <script defer src="/static/js/script.js"></script>
+</body>
+</html>
